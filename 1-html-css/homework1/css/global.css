@@ -1,0 +1,31 @@
+[class*="-check-marked-list"] {
+	list-style: none;
+}
+[class*="-check-marked-list"] > li {
+	position: relative;
+	padding-left: 1.9em;
+	margin-bottom: 1.5em;
+	font-size: 16px;
+}
+[class*="-check-marked-list"] > li::before {
+	content: "";
+	width: 1em;
+	height: 1em;
+	position: absolute;
+	left: 0;
+	top: 0.25em;
+	background: transparent no-repeat center;
+	background-size: contain;
+}
+
+.black-check-marked-list > li::before {
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABmJLR0QA/wD/AP+gvaeTAAABBElEQVRIie3UMUoDQRQG4E8rUTAqRE9iIWij2IhYeQAP4BUEO7EJqJ122ukhbKwsRQRFEARBsQ4WmsQiWQizs5CNs2CRH6aZ9+Z9O7C7jPJPsoNj1KtElvCDDj6wWQUyiccekq0vjKeGjgKkg8vUyDJaAfKJhZTIFJ7lb7OdEoHTCHKRGllHO0DeMJcSqeFV/jYbZYbM4kD3uyjKeQQ5K4PM4LZ3sIm1SM9WBHnBdBnoOhjQxGpfvY73oKcd9AyUm8jT9mNXkfpJWQTmcV+ANSL7T7q/n6FSx11kaLhaWBkWKYMd/hUZBHvARCqoCPvGYkokS/iC7FeBZKlhD7sYqxIaJZdfhYF6R58+xmoAAAAASUVORK5CYII=");
+}
+.wrapper {
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	font-family: Helvetica, Arial, sans-serif;
+	color: #303233;
+	background-color: rgba(250, 250, 249, 0.8);
+}

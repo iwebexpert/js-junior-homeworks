@@ -1,0 +1,39 @@
+.page-title {
+	margin: 0.5em 0.2em;
+}
+.bold {
+	font-weight: bold;
+}
+.italic {
+	font-style: italic;
+}
+.header,
+.footer {
+	min-height: 2em;
+	background: rgba(44, 35, 40, 0.8);
+}
+.footer__copy {
+	color: lightgray;
+	line-height: 2;
+}
+.block {
+	margin: 0.5em;
+}
+
+.block__subtitle {
+	color: #959799;
+}
+.main-menu {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0.5em 1em;
+	color: beige;
+}
+.main-menu__link,
+.main-menu__link:hover {
+	text-decoration: none;
+	color: inherit;
+}
+.main-menu__link {
+	margin: 0.5em;
+}
