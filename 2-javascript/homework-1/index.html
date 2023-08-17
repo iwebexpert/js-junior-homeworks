@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="#" />
+  <title>Домашнее задание - занятие 1</title>
+  <script>
+    // 1. Напишите программу, которая будет считать площадь прямоугольника
+    // и выводить значение на экран. Значения сторон прямоугольника сохраните в переменных.
+    // Округлите результат, который будет получаться до целых.
+    // * Округлите результат до сотых (пример: 10.05).
+
+    // Подсказка: для округления используйте Math.round()
+    // Пример
+    // console.log(Math.round(35.11));
+
+    // Если хочется организовать ввод с клавиатуры
+    // let num = Number(prompt("Введите число", "100"));
+    // let num = +prompt("Введите число", "100");
+
+    // Решение:
+    const rectangleSquare = (width, height) => width * height;
+    console.log(rectangleSquare(10, 20));
+
+    // 2. Даны переменные a, b, c, объявленные следующим способом:
+    let one = 25;
+    let two = 5;
+    let hello = "Hello";
+
+    // Эти строки остаются как есть, меняеются только 3 строки выше
+    one = one + 5; //= 30
+    two = two - 15; //= -10
+    hello = hello + " world!"; //= "Hello world!"
+    console.log(one);
+    console.log(two);
+    console.log(hello);
+
+    // 3. Объекты не так сложны
+    // 3.1. Создайте объект developer со свойствами имя, отдел
+    //      и премия за месяц (по умолчанию 15 000);
+    // 3.2. Выведите объект в консоль;
+    // 3.3. Увеличьте премию на 20%;
+    // 3.4. Вычтите из примии стоимость кофемашины для офиса - 5 200;
+    // 3.5. Выведите в консоль информацию о пользователе, используя обратные кавычки (``)
+    //      вместе с типами данных.
+
+    // Решение:
+    const developer = {
+      name: "Peter",
+      department: "Web",
+      mounthlyAward: 15000
+    };
+    console.log(developer);
+    developer.mounthlyAward *= 1.2;
+    developer.mounthlyAward -= 5200;
+    console.log(
+      `Имя: ${developer.name} - тип данных (${typeof (developer.name)})
+        Отдел: ${developer.department}  - тип данных (${typeof (developer.department)})
+        Ежемесячная премия: ${developer.mounthlyAward}  - тип данных (${typeof (developer.mounthlyAward)})`
+    );
+
+  </script>
+</head>
+
+<body></body>
+
+</html>
