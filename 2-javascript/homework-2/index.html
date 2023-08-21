@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="#" />
+  <title>Домашнее задание - занятие 2</title>
+  <script>
+    // 1. Создайте цикл, который:
+    // 1.1. Просит пользователя ввести значения (числа), используя prompt и сохраняет их в массив.
+    // 1.2. Выходит из цикла (заканчивает запрашивать значения), когда пользователь введёт
+    // нечисловое значение, пустую строку или нажмёт кнопку «Отмена». Для ввода используйте prompt().
+    // 1.3. Подсчитывает и возвращает сумму элементов массива.
+    // Число 0 (ноль) – считается числом, не останавливайте ввод значений при вводе ноля пользователем.
+
+    // Решение:
+    const inputCollections = [];
+    do {
+      let userInput = prompt("Введите число для сохранения");
+      if (isNaN(userInput) || userInput === null || userInput === '') {
+        break;
+      }
+      inputCollections.push(userInput);
+    } while (true);
+    console.log(inputCollections);
+
+    // 2. Дан массив чисел
+    let numbers = [0, -23, 5, 90, 104, 80, -55];
+    // С помощью цикла и условий найдите и выведите в консоль наибольшее и наименьшее число массива.
+    // *Найдите отдельно сумму отрицательных и положительных элементов массива.
+    // *Найдите среднее арифметическое элементов массива (сумма элементов, делить на количество).
+
+    // Решение:
+    const minMax = arr => {
+      let [min, max] = [arr[0], arr[0]];
+      for (let num of arr) {
+        min = num < min ? num : min;
+        max = num > max ? num : max;
+      }
+      return [min, max];
+    }
+    const middleAriphCalc = arr => (arr.reduce((acc, num) => acc + num, 0) / arr.length);
+    console.log(`Минимальное и максимальное значение: ${minMax(numbers)}, среднее арифметическое: ${middleAriphCalc(numbers)}`);
+
+
+    // 3. Дан массив
+    let languages = [
+      "javascript",
+      "php",
+      "php",
+      "typescript",
+      "javascript",
+      "html",
+      "html",
+      "java",
+      "javascript",
+    ];
+    // 1. Удалите повторяющиеся элементы массива.
+    // *2. Выведите в консоль, сколько раз повторялся каждый элемент массива (включая удаленные элементы массива).
+
+    // Решение:
+    const strArrUniqVal = arr => {
+      const uniq = [];
+      const repeatsCount = {};
+      for (let term of arr) {
+        if (uniq.includes(term)) {
+          repeatsCount[term] = repeatsCount[term] ? repeatsCount[term] + 1 : 1;
+          continue;
+        }
+        uniq.push(term);
+        repeatsCount[term] = 1;
+      }
+      return { uniq, repeatsCount };
+    };
+    console.log(strArrUniqVal(languages));
+
+  </script>
+</head>
+
+<body></body>
+
+</html>
