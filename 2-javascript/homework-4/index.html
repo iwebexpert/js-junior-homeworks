@@ -126,6 +126,22 @@
 			console.log(day);
 
 			// Решение:
+			const checkLeapYear = (year) => {
+				if ((0 == year % 4 && 0 != year % 100) || 0 == year % 400) {
+					return true;
+				} else {
+					return false;
+				}
+			};
+			const newCalendar = (elementLink, year, month) => {
+				let startDate = new Date(year, month - 1);
+				let isLeapYear = checkLeapYear(year);
+				let daysCount = (startDate.getMonth() + 1) % 2 ? 31 : 30;
+				daysCount = isLeapYear && month === 2 ? 29 : 28;
+				daysCount = month === 8 ? 31 : daysCount;
+				console.log(daysCount);
+			};
+			newCalendar(document.querySelector(".task3"), year, month);
 		</script>
 	</body>
 </html>
