@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="#" />
+		<title>Домашнее задание - занятие 4</title>
+	</head>
+	<body>
+		<h1>Для задания 1</h1>
+		<div class="task1">
+			<a id="link1" data-type="text/html" hreflang="RU-ru" rel="nofollow" class="link link-active" target="_blank" title="Откроется в новой вкладке" href="/homework4-1.html"> Homework 4.1</a>
+		</div>
+		<div class="task1" id="task1-link"></div>
+		<script>
+			// 1. Напишите функцию JavaScript, чтобы получить значения атрибутов class, href, hreflang,
+			// rel, target, title и data-type указанной ссылки. Полученный результат выведите в консоль.
+			// 2. Напишите функцию удаления ссылки #link1 из DOM.
+			// *3. Создайте точно такую же ссылку с помощью JavaScript и вставьте в #task1-link.
+			// Решение:
+			const getAttrs = (domEl, arttrs) => {
+				for (let attr of arttrs) {
+					console.log(`${attr}: ${domEl.getAttribute(attr)}`);
+				}
+			};
+			getAttrs(document.querySelector("#link1"), ["class", "href", "hreflang", "rel", "target", "title", "data-type"]);
+			const delElFromDOM = (el) => el.remove();
+			delElFromDOM(document.querySelector("#link1"));
+			const createLink = () => {
+				let elem = document.createElement("a");
+				elem.classList.add("link", "link-active");
+				elem.setAttribute("href", "/homework4-1.html");
+				elem.setAttribute("id", "link1");
+				elem.setAttribute("hreflang", "RU-ru");
+				elem.setAttribute("rel", "nofollow");
+				elem.setAttribute("target", "_blank");
+				elem.setAttribute("title", "Откроется в новой вкладке");
+				elem.setAttribute("href", "/homework4-1.html");
+				elem.dataset.type = "text/html";
+				elem.insertAdjacentText("afterbegin", "Homework 4.1");
+				return elem;
+			};
+			document.querySelector("#task1-link").insertAdjacentElement("afterbegin", createLink());
+		</script>
+
+		<h1>Для задания 2</h1>
+		<div class="task2">
+			<div>Языки программирования:</div>
+			<ul>
+				<li>JavaScript</li>
+				<li>Go</li>
+				<li>TypeScript</li>
+				<li><a href="#">PHP</a></li>
+			</ul>
+			<ol>
+				<li>Green</li>
+				<li>Yellow</li>
+				<li>Red</li>
+			</ol>
+		</div>
+		<script>
+			// 2. Напишите код, с помощью которого можно получить:
+			// 2.1. элемент <div>
+			// 2.2. <ul>
+			// 2.3. третий <li> первого списка (TypeScript)
+			// 2.4. <a> (PHP)
+			// *2.5. второй <li> второго списка (Yellow) через третий <li> первого списка (TypeScript)
+
+			// Решение:
+			let $div = document.querySelector(".task2").firstElementChild;
+			let $ul = $div.nextElementSibling;
+			let $threeLi = $ul.children[2];
+			let $a = $threeLi.nextElementSibling.firstChild;
+			let $Yellow = document.querySelector(".task2>ol").children[Array.from($ul.children).indexOf($threeLi) - 1];
+			console.log($div, $ul, $threeLi, $a, $Yellow);
+		</script>
+
+		<h1>Для задания 3</h1>
+		<div class="task3" id="calendar"></div>
+		<style>
+			.task3 table {
+				border-collapse: collapse;
+			}
+
+			.task3 td,
+			.task3 th {
+				border: 1px solid black;
+				padding: 3px;
+				text-align: center;
+			}
+
+			.task3 th {
+				background-color: orange;
+				font-weight: bold;
+			}
+
+			task3 td.red {
+				background-color: red;
+			}
+		</style>
+		<script>
+			// Создайте календарь в виде таблицы с помощью JavaScript
+			// Напишите функцию newCalendar(elementLink, year, month).
+
+			// Вызов функции newCalendar() создаст календарь для заданного месяца month в году year и вставить его внутрь elementLink.
+			// Календарь должен быть в виде таблицы (тег table), где неделя – это <tr>, а день – это <td>.
+			// У таблицы должен быть заголовок с названиями дней недели, каждый день – <th>.
+			// Первый день недели в календаре - понедельник.
+			// *Если выбран текущий месяц, подсветите красным текущий день на календаре.
+			// Пример вызова функции: newCalendar(elementLink, 2022, 1) сгенерирует календарь calendar.png
+
+			// Подсказки
+			let year = 2022,
+				month = 1;
+			let date = new Date(year, month - 1); // Создание объекта Date для месяца month в году year (номерация начинается с 0)
+			let day = date.getDay(); // Получение номера дня недели
+			console.log(day);
+
+			date.setDate(date.getDate() + 1);
+			day = date.getDay(); // Получение номера дня в недели
+			console.log(day);
+
+			date.setDate(date.getDate() + 1);
+			day = date.getDay();
+			console.log(day);
+
+			// Решение:
+			const checkLeapYear = (year) => {
+				if ((0 == year % 4 && 0 != year % 100) || 0 == year % 400) {
+					return true;
+				} else {
+					return false;
+				}
+			};
+			const newCalendar = (elementLink, year, month) => {
+				let startDate = new Date(year, month - 1);
+				let isLeapYear = checkLeapYear(year);
+				let daysCount = (startDate.getMonth() + 1) % 2 ? 31 : 30;
+				daysCount = isLeapYear && month === 2 ? 29 : month === 2 ? 28 : daysCount;
+				daysCount = month === 8 ? 31 : daysCount;
+				let firstDayNum = startDate.getDay();
+				let placehold = Array.from({ length: Math.abs(daysCount - firstDayNum - daysCount) }, () => null);
+
+				for (let i = startDate, dateNum = 1; i < daysCount, dateNum < daysCount + 1; i++, dateNum++) {
+					placehold.push(dateNum);
+				}
+				placehold.splice(0, 1);
+				for (let i = 1; i <= placehold.length % 7; i++) {
+					placehold.push(null);
+				}
+				let $rows = [];
+				for (let i = 0; i < placehold.length / 7; i++) {
+					$rows.push(document.createElement("tr"));
+				}
+				for (let i = 0, g = 0; i < placehold.length; i++) {
+					if (i % 7 === 0 && i !== 0) {
+						g += 1;
+					}
+					let $td = document.createElement("td");
+					$td.textContent = placehold[i] === null ? "" : placehold[i];
+					$rows[g].append($td);
+				}
+				let theadPoints = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+				let $table = document.createElement("table");
+				let $tableHeadRow = document.createElement("tr");
+				$table.append($tableHeadRow);
+				theadPoints.map((point) => {
+					let $th = document.createElement("th");
+					$th.textContent = point;
+					$tableHeadRow.append($th);
+					return $th;
+				});
+				$rows.map((tableRow) => $table.append(tableRow));
+				elementLink.insertAdjacentElement("afterbegin", $table);
+			};
+			newCalendar(document.querySelector(".task3"), year, month);
+		</script>
+	</body>
+</html>

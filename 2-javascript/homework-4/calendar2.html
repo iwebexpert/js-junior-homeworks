@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Для задания 3</h1>
+  <div class="task3" id="calendar"></div>
+  <style>
+    .task3 table {
+      border-collapse: collapse;
+    }
+
+    .task3 td,
+    .task3 th {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    .task3 th {
+      background-color: orange;
+      font-weight: bold;
+    }
+
+    .task3 td.red {
+      background-color: red;
+    }
+  </style>
+  <script>
+    function getDay(date){
+      let day = date.getDay();
+      if(day === 0) day = 7;
+      return day - 1;
+    }
+
+    const newCalendar = (elementLink, year, month) => {
+      const dateMonth = month - 1;
+      const date = new Date(year, dateMonth);
+
+      const today = new Date();
+      const isCurrentMonth = today.getFullYear() === year && today.getMonth() === dateMonth
+
+      let table = '<table><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th></tr><tr>'
+
+        // Вначале
+        for(let i = 0; i < getDay(date); i++){
+          table += '<td></td>'
+        }
+
+        // Дни
+        while(date.getMonth() === dateMonth){
+          const isCurrentDay = isCurrentMonth && date.getDate() === today.getDate()
+          const tdClass = isCurrentDay ? 'red': ''
+
+          table += `<td class="${tdClass}">${date.getDate()}</td>`
+
+          if(getDay(date) % 7 === 6){
+            table += '</tr><tr>'
+          }
+
+          date.setDate(date.getDate() + 1)
+        }
+
+        //В конце
+        if(getDay(date)!== 0){
+          for(let i = getDay(date); i < 7; i++){
+          table += '<td></td>'
+        }
+        }
+
+        table += '</tr></table>'
+        elementLink.innerHTML = table
+
+    }
+
+
+    newCalendar(document.querySelector(".task3"), 2024, 1);
+    newCalendar(document.querySelector(".task3"), 2023, 8);
+  </script>
+</body>
+
+</html>
