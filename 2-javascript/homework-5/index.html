@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="shortcut icon" href="#"/>
+	<title>Домашнее задание - занятие 5</title>
+	<style>
+		#table1 th {
+			cursor: pointer;
+		}
+
+		.sort-asc::after {
+			content: " ▲";
+		}
+
+		.sort-desc::after {
+			content: " ▼";
+		}
+	</style>
+</head>
+<body>
+<h1>Для задания 1</h1>
+<div class="task1">
+	<table id="table1">
+		<thead>
+		<tr>
+			<th onclick="sortTable(0)">Имя<span class="sort-indicator"></span></th>
+			<th onclick="sortTable(1)">Отдел<span class="sort-indicator"></span></th>
+			<th onclick="sortTable(2)">Возраст<span class="sort-indicator"></span></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Vika</td>
+			<td>Front-end</td>
+			<td>32</td>
+		</tr>
+		<tr>
+			<td>Ivan</td>
+			<td>Back-end</td>
+			<td>30</td>
+		</tr>
+		<tr>
+			<td>Anna</td>
+			<td>Front-end</td>
+			<td>25</td>
+		</tr>
+	</tbody>
+	</table>
+	<div>
+		<form id="form1">
+			<div>
+				<input value="" placeholder="Имя" id="form1-name">
+			</div>
+			<div>
+				<input value="" placeholder="Отдел" id="form1-department">
+			</div>
+			<div>
+				<input value="" placeholder="Возраст" id="form1-age">
+			</div>
+			<div>
+				<input type="button" value="Добавить новую строку" id="form1-btn">
+			</div>
+		</form>
+	</div>
+</div>
+<script>
+	// 1. Написать функцию для сортировки таблицы #table1 по столбцу "Имя".
+	// В таблице может быть больше строк.
+	// Функцию сортировки необходимо вызывать при клике на столбце "Имя".
+	// Один клик на столбце, сортировка по алфавиту, второй клик, в обратном порядке.
+	// Также, можете добавить CSS стили на свое усмотрение.
+	// *2. Напишите функцию для добавления строк в таблицу из формы. Новые строки должны тоже учавствовать в сортировке.
+	// *3. Добавьте возможность удаления строк из таблицы. Это не должно как-то влиять на сортировку.
+	// Решение:
+
+	const table = document.querySelector('#table1')
+
+	// Вариант 1
+	// const rows = Array.from(table.rows).splice(1).sort((a, b) => a.cells[1].textContent > b.cells[1].textContent ? 1 : -1)
+
+	// table.tBodies[0].append(...rows)
+
+	// Вариант 2
+	let sortOrder = 1 // -1 - desc
+	let sortedColumn = -1
+
+	function sortTable(index){
+		if(index !== sortedColumn){
+			sortOrder = 1
+		} else {
+			sortOrder = -1
+		}
+		sortedColumn = index
+
+		// Иконки
+		const sortIndicators = document.querySelectorAll('.sort-indicator')
+		sortIndicators.forEach(item => item.innerHTML = '')
+
+		// Установим индикатор
+		const sortIndicator = table.tHead.rows[0].cells[index].querySelector('.sort-indicator')
+		sortIndicator.innerHTML = sortOrder === 1 ? ' ▲' : ' ▼'
+
+		const rows = Array.from(table.tBodies[0].rows).sort((a, b) => {
+			const cellA = a.cells[index].textContent.toLowerCase()
+			const cellB = b.cells[index].textContent.toLowerCase()
+
+			return sortOrder * cellA.localeCompare(cellB)
+		})
+
+	table.tBodies[0].append(...rows)
+	}
+
+</script>
+
+<h1>Для задания 2</h1>
+<div class="task3" id="calendar">
+
+</div>
+<div id="task3-form">
+	<form id="form2">
+		<!-- Добавьте необходимые поля формы -->
+		<input type="number" name="year" placeholder="Год"/>
+		<input type="number" name="month" placeholder="Месяц"/>
+		<button type="submit">Рассчитать</button>
+	</form>
+</div>
+<style>
+    .task3 table {
+        border-collapse: collapse;
+    }
+
+    .task3 td,
+    .task3 th {
+        border: 1px solid black;
+        padding: 3px;
+        text-align: center;
+    }
+
+    .task3 th {
+        background-color: orange;
+        font-weight: bold;
+    }
+
+    .task3 td.red {
+        background-color: red;
+    }
+</style>
+<script>
+	// Создайте календарь в виде таблицы с помощью JavaScript
+	// Напишите функцию newCalendar(elementLink, year, month).
+
+	// Вызов функции newCalendar() создаст календарь для заданного месяца month в году year и вставить его внутрь elementLink.
+	// Календарь должен быть в виде таблицы (тег table), где неделя – это <tr>, а день – это <td>.
+	// У таблицы должен быть заголовок с названиями дней недели, каждый день – <th>.
+	// Первый день недели в календаре - понедельник.
+	// *Если выбран текущий месяц, подсветите красным текущий день на календаре.
+	// Пример вызова функции: newCalendar(elementLink, 2022, 1) сгенерирует календарь calendar.png
+
+	// Расширенное задание для занятия №5
+	// 1. *Создайте форму с помощью которой можно будет создавать календарь для любого месяца
+	// 2. *Добавьте кнопку для построения календаря за текущий месяц
+
+	// Решение:
+	*/
+	function getDay(date) {
+		let day = date.getDay();
+		if (day === 0) day = 7;
+		return day - 1;
+	}
+
+	const newCalendar = (elementLink, year, month) => {
+		const dateMonth = month - 1;
+		const date = new Date(year, dateMonth);
+
+		const today = new Date();
+		const isCurrentMonth = today.getFullYear() === +year && today.getMonth() === +dateMonth;
+		console.log(isCurrentMonth)
+		let table = "<table><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th></tr><tr>";
+
+		// Вначале
+		for (let i = 0; i < getDay(date); i++) {
+			table += "<td></td>";
+		}
+
+		// Дни
+		while (date.getMonth() === dateMonth) {
+			const isCurrentDay = isCurrentMonth && date.getDate() === today.getDate();
+			const tdClass = isCurrentDay ? "red" : "";
+
+			table += `<td class="${tdClass}">${date.getDate()}</td>`;
+
+			if (getDay(date) % 7 === 6) {
+				table += "</tr><tr>";
+			}
+
+			date.setDate(date.getDate() + 1);
+		}
+
+		//В конце
+		if (getDay(date) !== 0) {
+			for (let i = getDay(date); i < 7; i++) {
+				table += "<td></td>";
+			}
+		}
+
+		table += "</tr></table>";
+		elementLink.innerHTML = table;
+	};
+	document.querySelector("#form2").addEventListener("submit", (event) => {
+		event.preventDefault();
+		let formData = new FormData(event.target);
+		let year = formData.get("year");
+		let mounth = formData.get("month");
+		newCalendar(document.querySelector("#calendar"), year, mounth);
+	});
+</script>
+</body>
+</html>
