@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="shortcut icon" href="#"/>
+	<title>Домашнее задание - занятие 7</title>
+	<script>
+		// Задание №1. Последовательная загрузка пользователей
+		let userUrls = [
+			"users1.json",
+			"users2.json",
+		];
+
+		// Напишите скрипт, который все URL из этого массива загружает
+		// последовательно (один за другим) и затем сохраняет результаты в массиве data и выводит в консоль.
+
+		// Пример варианта с параллельной загрузкой пользователей:
+		// Promise.all( urls.map(function(url){}) ).then(function(users){});
+		// Важно. Загрузку пользователей нужно реализовать именно последовательно.
+
+		// Решение
+		const taskOne = async (urls) => {
+			try {
+				let data = [];
+				for (const url of urls) {
+					let res = await fetch(url, {mode: 'no-cors'});
+					let resData = await res.json();
+					data = data.concat(resData);
+				}
+				return data;
+			} catch (e) {
+				console.log(`Error:`, e.message);
+			}
+		}
+		taskOne(userUrls).then(data => console.log("Task One: ", data));
+
+		// Задание №2. Получение постов вместе с комментариями
+		// 2.1. Создайте функцию getPosts() для получения всех записей.
+		// URL: https://jsonplaceholder.typicode.com/posts/
+		// Создайте асинхронную функцию getcomments(postsId = []), которая получает на вход массив с идентификаторами
+		// постов и запрашивает комментарии к каждому посту и возвращает массив объектов-комментариев.
+		// URL: https://jsonplaceholder.typicode.com/posts/1/comments/
+		// 2.2. *Создать класс Post и Comment с полями из вышеприведенных URL. Создавать экземпляры классов
+		// после получения данных.
+
+		// Особенности:
+		// 1. На каждый пост при получении комментариев должен приходиться ровно один запрос fetch.
+		// 2. Запросы должны быть асинхронными (не должны ожидать завершения друг друга).
+		// Если, вдруг, какой-то запрос завершается ошибкой или выяснилось, что данных о запрашиваемых комментариях нет,
+		// то необходимо из функции возвращать null в общем массиве с результатами (комментарии).
+
+		// Решение
+		class Post {
+			constructor(userId, id, title, body) {
+				this.userId = userId;
+				this.id = id;
+				this.title = title;
+				this.body = body;
+			}
+		}
+
+		class Comment {
+			constructor(postId, id, name, email, body) {
+				this.postId = id;
+				this.name = name;
+				this.email = email;
+				this.body = body;
+			}
+		}
+
+		const getPosts = async () => {
+			const postsUrl = "https://jsonplaceholder.typicode.com/posts/";
+			const res = await fetch(postsUrl);
+			const data = await res.json();
+			const posts = [];
+			data.forEach(postItem => {
+				posts.push(new Post(postItem.userId, postItem.id, postItem.title, postItem.body));
+			});
+			return posts;
+		};
+		const getComments = async (postId) => {
+			const postCommentsUrl = `https://jsonplaceholder.typicode.com/posts/${postId}/comments/`;
+			const res = await fetch(postCommentsUrl);
+			return await res.json();
+		};
+		const taskTwo = async () => {
+			let posts = await getPosts();
+			for (const post of posts) {
+				post.comments = await getComments(post.id);
+			}
+			return posts;
+		}
+		taskTwo().then(posts => console.log(posts));
+
+	</script>
+</head>
+<body></body>
+</html>

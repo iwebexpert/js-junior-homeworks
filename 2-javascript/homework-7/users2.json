@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Виктор",
+        "age": 32,
+        "isAdmin": true
+    },
+    {
+        "name": "Анна",
+        "age": 24,
+        "isAdmin": false
+    }
+]
