@@ -80,15 +80,16 @@
 			});
 			return posts;
 		};
-		const getComments = async (postId) => {
-			const postCommentsUrl = `https://jsonplaceholder.typicode.com/posts/${postId}/comments/`;
-			const res = await fetch(postCommentsUrl);
-			return await res.json();
+		const getComment = async (postId) => {
+			const postCommentUrl = `https://jsonplaceholder.typicode.com/posts/${postId}/comments/`;
+			const res = await fetch(postCommentUrl);
+			return await res.json() || null;
 		};
 		const taskTwo = async () => {
 			let posts = await getPosts();
-			for (const post of posts) {
-				post.comments = await getComments(post.id);
+			let comments = await Promise.all(posts.map(post => getComment(post.id)));
+			for (const postIndex in posts) {
+				posts[postIndex].comments = comments[postIndex];
 			}
 			return posts;
 		}
