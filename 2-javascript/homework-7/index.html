@@ -52,6 +52,13 @@
 		// то необходимо из функции возвращать null в общем массиве с результатами (комментарии).
 
 		// Решение
+		class CommentError extends Error {
+			constructor(message) {
+				super(message);
+				this.name = this.constructor.name;
+			}
+		}
+
 		class Post {
 			constructor(userId, id, title, body) {
 				this.userId = userId;
@@ -62,6 +69,8 @@
 		}
 
 		class Comment {
+			comments = [];
+
 			constructor(postId, id, name, email, body) {
 				this.postId = id;
 				this.name = name;
@@ -83,14 +92,29 @@
 		const getComment = async (postId) => {
 			const postCommentUrl = `https://jsonplaceholder.typicode.com/posts/${postId}/comments/`;
 			const res = await fetch(postCommentUrl);
-			return await res.json() || null;
+			const data = await res.json();
+			data[0].postId = "1"; // Специально ошибка
+			if (data.every(comment => (
+				typeof comment.postId === 'number' &&
+				typeof comment.name === 'string' &&
+				typeof comment.email === 'string' &&
+				typeof comment.body === "string"
+			))) {
+				return data;
+			} else {
+				throw new CommentError('Не корректный формат полей, комментарии не были привязаны к постам');
+			}
 		};
 		const taskTwo = async () => {
 			let posts = await getPosts();
-			let comments = await Promise.all(posts.map(post => getComment(post.id)));
-			for (const postIndex in posts) {
-				posts[postIndex].comments = comments[postIndex];
+			let comments = await Promise.all(posts.map(post => getComment(post.id)))
+				.catch(e => console.log(e.name, e.message));
+			if (comments) {
+				for (const postIndex in posts) {
+					posts[postIndex].comments = comments[postIndex];
+				}
 			}
+
 			return posts;
 		}
 		taskTwo().then(posts => console.log(posts));
