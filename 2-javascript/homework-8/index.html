@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="shortcut icon" href="#"/>
+	<title>Домашнее задание - занятие 8</title>
+	<script>
+		// Задание №1. Секундомер
+		// 1.1. Создайте пользовательскую функцию stopwatch(start, end),
+		// которая выводит в консоль число каждую секунду, начиная от числа start и заканчивая end.
+
+		// Первый вариант функции stopwatch(start, end) реализуйте с использованием setInterval.
+		// *Второй вариант функции stopwatch(start, end) - через рекурсивный setTimeout.
+
+		// Решение
+		const stopwatch = (start, end) => {
+			const tickMsTime = 1000;
+			const ticker = (currentStep) => {
+				console.log(currentStep);
+				if (currentStep < end) {
+					setTimeout(() => {
+						ticker(currentStep+1)
+					}, tickMsTime);
+				}
+			}
+			ticker(start)
+
+		};
+		stopwatch(5, 9);
+
+
+		// Задание №2. Пользовательский класс для обработки ошибок
+		// 2.1. В задание к предыдущему уроку (Получение постов вместе с комментариями) добавить класс CommentError,
+		// который наследует встроенный в JS класс Error.
+		// 2.2. Искусственно добавьте ошибку при получении комменариев,
+		// используйте пользовательский класс CommentError при обработке ошибок вместо добавления null в массив.
+		/**
+		 * Реализовано в папке с 7 ДЗ
+		 */
+
+		// Задание №3. Курсовой проект "Плеер" в ООП стиле
+		// 3.1. Перепишите курсовой проект с использованием классов.
+		// 3.2. Вынесите название композиций в отдельный файл. Получите названия песен с помощью AJAX.
+		// *3.3. Подумайте, где можно использовать конструкцию try...catch в курсовом проекте.
+
+
+	</script>
+</head>
+<body></body>
+</html>
