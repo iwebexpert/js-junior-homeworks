@@ -1,0 +1,64 @@
+.player {
+    margin: 1em;
+}
+
+.player__main,
+.player__footer {
+    display: grid;
+    grid-template: 1fr/ 200px 1fr;
+    grid-gap: 2em;
+}
+
+.player__logo {
+    font-size: 200px;
+}
+
+#play,
+#pause {
+    font-size: 2em;
+}
+
+#play,
+#pause {
+    cursor: pointer;
+    justify-self: center;
+}
+
+#volume {
+    width: 100%;
+}
+
+.volume {
+    grid-column: span 2;
+}
+
+.player__tracks {
+    border: 1px solid black;
+    border-radius: 0.2em;
+    border-bottom: none;
+}
+
+.player__track {
+    cursor: pointer;
+    padding: 0.5em;
+    border-bottom: 1px solid black;
+}
+
+.player__controls {
+    display: inherit;
+    grid-template: auto auto / 1fr;
+    justify-content: space-evenly;
+}
+
+.player__actions {
+    display: inherit;
+    grid-template-columns: 1fr 1fr;
+}
+
+.player__progressbar > progress {
+    width: 100%;
+}
+
+.player__footer {
+    align-items: end;
+}

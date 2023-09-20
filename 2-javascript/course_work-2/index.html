@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+	<link rel="stylesheet" href="./css/app.css"/>
+	<title>interactive music player</title>
+</head>
+<body>
+<div class="wrapper">
+	<div class="player">
+		<div class="player__main">
+			<audio class="player__audio">
+				<source src="" class="player__source"/>
+				Your browser doesn't support HTML5
+			</audio>
+			<div class="player__logo"><i class="fa-solid fa-headphones"></i></div>
+			<div class="player__list">
+				<h4>Список воспроизведения</h4>
+				<div class="player__tracks">
+					<!-- <div class="player__track">something</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="player__footer">
+			<div class="player__controls">
+				<div class="player__actions">
+					<div id="play"><i class="fa-solid fa-play"></i></div>
+					<div id="pause"><i class="fa-solid fa-pause"></i></div>
+				</div>
+				<div class="volume"><input type="range" name="volume" id="volume" min="0" max="1" step="0.025"/></div>
+			</div>
+			<div class="player__progressbar">
+				<div class="player__current-track-name"></div>
+				<progress value="0" max="100"></progress>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://kit.fontawesome.com/b1f89a088d.js" crossorigin="anonymous"></script>
+<script src="./js/app.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		let playerElement = document.querySelector(".player__audio");
+		let containerMusicElement = document.querySelector(".player__tracks");
+		let sourceElement = document.querySelector(".player__source");
+		let volumeSliderElement = document.querySelector(".volume > input");
+		let musicProgressElement = document.querySelector(".player__progressbar > progress");
+		let musicActionsElement = document.querySelector(".player__actions");
+		const app = new App(playerElement, containerMusicElement, sourceElement, volumeSliderElement, musicProgressElement, musicActionsElement);
+		app.init();
+	});
+</script>
+</body>
+</html>
