@@ -1,0 +1,23 @@
+.about-me
+	display: grid
+	grid-template: 1fr / minmax(1.8rem, 50rem) minmax(28rem, 93rem)
+	justify-content: space-between
+	align-items: center
+	margin-bottom: 4.2rem
+	@media (max-width: 920px)
+		align-items: center
+		grid-template: auto 1fr / 1fr
+
+	&__image
+		@media (max-width: 920px)
+			display: inherit
+			justify-content: center
+			&>img
+				max-width: 30rem
+
+
+	&__title
+		font-size: 4.8rem
+		color: white
+		font-weight: 800
+		margin: .5em 0

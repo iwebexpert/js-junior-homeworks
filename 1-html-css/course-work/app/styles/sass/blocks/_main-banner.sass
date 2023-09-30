@@ -1,0 +1,132 @@
+.main-banner
+	padding-top: 3.8rem
+	min-height: 100vh
+	box-sizing: border-box
+
+	&__content-wrapper
+		display: flex
+		justify-content: space-between
+		margin-top: 10.0rem
+		flex-wrap: wrap
+		@media (max-width: 1228px)
+			flex-direction: column
+			align-items: center
+			text-align: center
+		@media (max-width: 1228px) and (min-width: 768px)
+			flex-wrap: nowrap
+		@media (max-width: 768px)
+			justify-content: center
+			margin-top: 2rem
+
+	&__content, &__image, &__contacts
+		@media (min-width: 1228px)
+			flex-basis: 33%
+
+
+	&__content
+		margin-top: 5%
+		@media (max-width: 768px)
+			order: 1
+			margin-bottom: 2.0rem
+
+	&__title
+		color: white
+		margin-top: 2.8rem
+		font-size: 5.2rem
+		font-weight: 800
+		@media (max-width: 768px)
+			order: 0
+
+	&__subtitle
+		color: rgba(255, 255, 255, 0.50)
+		text-align: justify
+		font-size: 2.0rem
+		margin-top: 1.6rem
+
+	&__socials
+		margin: 0 -.5em
+
+	&__social
+		display: inline-block
+		margin: 0 .5em
+		transition: .1s ease-out
+		opacity: .8
+
+		&:hover
+			opacity: 1
+			border-radius: 50%
+
+	&__image
+		max-width: 50.0rem
+		display: inline-flex
+		@media (max-width: 768px)
+			flex-direction: column
+			align-items: center
+
+	&__contacts
+		display: inherit
+		box-sizing: border-box
+		flex-direction: column
+		@media (min-width: 1229px)
+			margin-top: 10%
+			align-items: flex-end
+		@media (max-width: 1228px)
+			align-items: center
+			margin: 1em 0
+		@media (max-width: 768px)
+			order: 2
+
+
+	&__link, &__button
+		text-decoration: none
+		position: relative
+		display: inline-block
+		color: rgba(123, 74, 226, 0.50)
+
+	&__link
+		&:after
+			content: ''
+			display: block
+			width: 2.0rem
+			height: 1.6rem
+			background: url(/images/src/icons/ArrowLineDown.svg)
+			position: absolute
+			top: .5rem
+			right: -2.0rem
+		@media (min-width: 1228px)
+			left: -2.0rem
+			margin-bottom: 1.0rem
+		@media (max-width: 768px)
+			margin-bottom: .8em
+
+	&__button
+		display: flex
+		justify-content: space-between
+		align-items: center
+		border-radius: 1.6rem
+		border: .1rem solid rgba(123, 74, 226, 0.50)
+		padding: 1.0rem
+		text-decoration: none
+
+		&::before
+			display: block
+			width: 3.0rem
+			height: 3.0rem
+			@media (min-width: 768px)
+				background: url(/images/src/icons/WhatsappLogo.svg)
+				content: ''
+
+		&:hover
+			background: rgba(123, 74, 226, 0.50)
+			border-color: rgba(255, 255, 255, 0.50)
+			color: rgba(255, 255, 255, 0.50)
+
+			&:before
+				color: rgba(255, 255, 255, 0.50)
+
+		@media (min-width: 1228px)
+			width: 25.4rem
+		@media (min-width: 768px)
+			width: 22.5rem
+		@media (max-width: 768px)
+			text-align: center

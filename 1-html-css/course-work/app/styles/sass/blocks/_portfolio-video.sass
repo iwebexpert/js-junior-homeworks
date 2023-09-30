@@ -1,0 +1,72 @@
+.portfolio-video
+	&__list
+		display: grid
+		grid-template: 1fr / repeat(auto-fit, minmax(30rem, 50rem))
+		margin-top: 5.34rem
+		margin-bottom: 14.5rem
+		gap: 5.4rem
+		justify-content: center
+		@media (max-width: 1228px)
+			display: flex
+			justify-content: center
+			gap: 1.8rem
+			max-width: 100%
+		@media (max-width: 955px)
+			justify-content: flex-start
+			overflow: scroll
+
+	&__item
+		box-sizing: border-box
+		padding: 3rem
+		border-radius: 16px
+		border: 1px solid rgba(123, 74, 226, 0.50)
+		font-size: 18px
+		transition: .1s
+		@media (max-width: 1228px)
+			flex: 0 1 30rem
+			min-width: 300px
+
+		&:hover
+			background-color: rgba(123, 74, 226, 0.50)
+
+	&__image
+		margin-bottom: 1.25em
+		border-radius: inherit
+
+	&__content
+		display: grid
+		grid-template: 1fr / auto 1fr
+		justify-content: space-between
+		gap: 5rem
+		@media (max-width: 1228px)
+			display: flex
+			flex-direction: column
+			align-self: flex-end
+
+	&__title
+		font-size: 1.1em
+		color: white
+
+	&__tags
+		display: flex
+		gap: 1.25em
+		font-size: 16px
+		justify-content: flex-end
+		margin-bottom: 1.3em
+		flex-wrap: wrap
+		@media (max-width: 1228px)
+			justify-content: flex-start
+
+	&__link
+		display: flex
+		align-items: center
+		justify-content: flex-end
+		color: rgba(255, 255, 255, 0.50)
+		text-decoration: none
+
+		&::after
+			content: ''
+			background: url(/images/src/icons/Play.svg) .3em .2em / 4em no-repeat
+			width: 1.3em
+			height: 1.2em
+			display: inline-block

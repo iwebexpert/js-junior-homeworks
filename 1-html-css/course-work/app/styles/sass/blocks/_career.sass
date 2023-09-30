@@ -1,0 +1,75 @@
+.career
+	margin-bottom: 14.2rem
+
+	&__column
+		max-width: 100%
+		overflow: auto
+
+	&__header
+		text-align: center
+		margin-bottom: 6.4rem
+
+	&__track
+		display: grid
+		grid-template: 1fr / repeat(2, 1fr)
+		@media (max-width: 1400px)
+			grid-template: auto / auto
+			gap: 2.4rem
+
+	&__list
+		display: grid
+		grid-template: repeat(auto-fit, minmax(58rem, 1fr)) / 1fr
+		justify-content: center
+
+.column
+	&__header
+		text-align: center
+		margin-bottom: 6.5rem
+		@media (max-width: 1400px)
+			text-align: left
+
+	&__title
+		color: #FFF
+		font-weight: 800
+		font-size: 3.2rem
+
+	&__subtitle
+		font-size: 2.4rem
+
+	&__list
+		display: grid
+		justify-content: center
+		gap: 6.4rem
+		@media (max-width: 1400px)
+			display: flex
+			gap: 1em
+			justify-content: flex-start
+			padding: 1em 0
+
+.place
+	max-width: 58rem
+	min-width: 30rem
+	box-sizing: border-box
+	padding: 3rem
+	border-radius: 16px
+	border: 1px solid rgba(123, 74, 226, 0.50)
+	transition: .1s
+
+	&:hover
+		background-color: rgba(123, 74, 226, 0.10)
+
+	&__title
+		font-weight: 700
+		font-size: 2rem
+		color: #fff
+		margin-bottom: 1rem
+
+	&__caption
+		margin-bottom: 1em
+		max-height: 3.5em
+		overflow: hidden
+		text-overflow: ellipsis
+
+	&__period
+		text-align: right
+		color: #7B4AE2

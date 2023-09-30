@@ -1,0 +1,67 @@
+.reviews
+	&__controls
+		display: flex
+		gap: 1em
+
+	&__button
+		background: url(/images/src/icons/WorkOptions.svg)
+		width: 6rem
+		height: 6rem
+
+		&-disabled
+			background-color: rgb(123, 74, 226, .1)
+
+	&__track
+		display: flex
+		gap: 7rem
+		margin: 6.4rem 0
+		max-width: 100%
+		overflow: auto
+		@media (max-width: 768px)
+			gap: 1.8rem
+			padding-bottom: 1em
+
+.review
+	display: grid
+	grid-template: 32px 1fr auto / 1fr
+	padding: 3rem
+	border-radius: 16px
+	border: 1px solid rgba(123, 74, 226, 0.50)
+	flex: 0 0 50rem
+	transition: .1s
+	box-sizing: border-box
+	@media (max-width: 768px)
+		flex: 1 0 30rem
+
+	&:hover
+		background: #000
+
+	&__quote
+		max-width: 3.2rem
+
+	&__description
+		margin-bottom: 1.5rem
+		@media (max-width: 768px)
+			font-size: 1.4rem
+
+.author
+	display: flex
+	gap: 3.4rem
+
+	&__title, &__position
+		font-weight: 700
+
+	&__title
+		color: #FFF
+		font-size: 2rem
+		@media (max-width: 768px)
+			font-size: 1.2rem
+
+	&__position
+		color: rgba(123, 74, 226, 0.50)
+		font-size: 1.6rem
+		@media (max-width: 768px)
+			font-size: 1.2rem
+
+.btn-prev
+	transform: rotate(180deg)
