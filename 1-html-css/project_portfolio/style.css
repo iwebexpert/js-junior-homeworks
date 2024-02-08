@@ -1,0 +1,32 @@
+.menu li {
+  display: inline;
+  list-style: none;
+  padding-right: 15px;
+  font-size: 16px;
+}
+
+a:link {
+  text-decoration: none;
+  color: rgb(238, 96, 96);
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #fea501;
+}
+
+.projects {
+  margin-bottom: 0;
+}
+
+.landing {
+  padding: 10px;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+
+.site_watches {
+  padding: 10px;
+  margin-top: 5px;
+  border: 2px solid black;
+}
